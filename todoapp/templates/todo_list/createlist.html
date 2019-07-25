@@ -1,0 +1,13 @@
+{% extends 'todo_list/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <form action="createItem" method="POST">
+            {% csrf_token %}
+            
+                <input type="text" name="head" class="form-control" placeholder="List Name">
+                <input type="submit" value="go">
+            
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'todo_list/base.html'%}
+{% block content %}
+
+       <div class="container">
+           <div class="row align-items-center justify-content-center" style="height: 100vh">
+                <div class="col-4">
+                    <div class="card border-dark mb-3">
+                        <div class="card-header bg-transparent border-success text-center">{{key1.category}}</div>
+                        <div class="card-body text-dark">
+                            <ul class="list-group list-group-flush">
+                            {% for item in key %}
+                                <li class="list-group-item">
+                                    <form action="{% url 'todo_list:saveEdit' k_id=item.todo_id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="text" name="content" value="{{item.category}}">
+                                    <input type="submit" value="save" class="btn btn-primary btn-sm align-self-end">
+                                    </form>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                            <div class="row" style="padding-top: 5px">
+                                <div class="col-sm-4">
+                                    <form action="{% url 'todo_list:addnew' head_id=key1.todo_id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm"> Add New </button>
+                                    </form>
+                                </div>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-6">
+                                    <a href="{% url 'todo_list:innerList' p1_id %}" class="btn btn-primary btn-sm">Edit Completed</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+{% endblock %}
